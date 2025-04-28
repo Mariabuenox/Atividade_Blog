@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/head") %>
+<%- include ("../partials/menu") %>
+
+
+<body>
+    <center>
+        Bem vindo à página login
+        <br><br>
+        <form action="" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"> <br><br>
+            <label for="senha">Senha:</label>
+            <input type="text" id="senha" name="senha"> 
+            <br><br>
+          </form>
+          <form action="./pages/dashboard" method="get">
+            <input type="submit" value="Login">
+            </form>  <br>
+
+
+
+        <a href="cadastro"> Não tenho cadastro</a><br>
+        <%- include ("../partials/footer") %>
+    </center>
+
+</body>
+
+</html>

@@ -4,25 +4,41 @@ const sqlite3 = require("sqlite3");
 
 const app = express(); // Armazena as chamadas e propriedades da biblioteca EXPRESS
 
-const PORT = 8000;
+const PORT = 3000; // Configura o TCP
 
 app.use('/static', express.static(__dirname + '/static'));
 
 app.set('view engine', 'ejs');
 
-app.get("/index", (req, res) => {
-    console.log("GET /")
-    res.render("index");
+app.get("/login", (req, res) => {
+    res.render("pages/login");
+    console.log("GET /");
+
+});
+
+app.get("/cadastro", (req, res) => {
+    res.render("pages/cadastro");
+    console.log("GET /cadastro");
+
+});
+
+
+app.get("/", (req, res) => {
+    res.render("pages/index");
+    console.log("GET /index");
 });
 
 app.get("/sobre", (req, res) => {
-    res.render("sobre");
-    console.log("GET /sobre")
+    res.render("pages/sobre");
+    console.log("GET /index");
 });
+
 app.get("/dashboard", (req, res) => {
-    res.send(`Você está na página Dashboard!`);
-    console.log("GET /dashboard")
+    res.render("pages/dashboard");
+    console.log("GET /");
+
 });
+
 app.listen(PORT, () => {
     console.log(`Servidor sendo executado na porta ${PORT}`);
 });

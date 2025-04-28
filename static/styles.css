@@ -1,3 +1,12 @@
-* {
-    border: 1px solid red
+table td {
+    padding: 0 40px;
+    /* 0 em cima/baixo, 20px nas laterais */
+}
+
+header {
+    background-color: #fffabe;
+    color: #e51919;
+    padding: 30px 30px;
+    justify-content: space-between;
+    color: white;
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/head") %>
+<%- include ("../partials/menu") %>
+
+
+    <body>
+        <center>
+            Bem-vindo à pagina Cadastro!<br><br>
+            <form action="/login" method="post">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome"> <br><br>
+                <label for="senha">Senha:</label>
+                <input type="text" id="senha" name="senha"> <br><br>
+                <label for="senha">Senha:</label>
+                <input type="text" id="confsenha" name="confsenha">
+                <br><br>
+            </form>
+            <form action="./pages/dashboard" method="get">
+                <input type="submit" value="Cadastrar">
+            </form>
+
+            </form><br>
+            <a href="login"> Ir para a página login</a>
+
+            <%- include ("../partials/footer") %>
+        </center>
+
+
+    </body>
+
+</html>
