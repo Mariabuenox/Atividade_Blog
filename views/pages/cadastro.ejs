@@ -8,21 +8,18 @@
     <body>
         <center>
             Bem-vindo à pagina Cadastro!<br><br>
-            <form action="/login" method="post">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome"> <br><br>
-                <label for="senha">Senha:</label>
-                <input type="text" id="senha" name="senha"> <br><br>
-                <label for="senha">Senha:</label>
-                <input type="text" id="confsenha" name="confsenha">
+            <form action="cadastro" method="post">
+                User:
+                <input type="text" id="username" name="username"> <br><br>
+                Senha:
+                <input type="text" id="senha" name="password"> <br><br>
                 <br><br>
+                <button type ="submit">Cadastrar</button>   
             </form>
-            <form action="./pages/dashboard" method="get">
-                <input type="submit" value="Cadastrar">
-            </form>
+          
 
             </form><br>
-            <a href="login"> Ir para a página login</a>
+            <a href="login"> Já tenho cadastro</a>
 
             <%- include ("../partials/footer") %>
         </center>
