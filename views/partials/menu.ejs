@@ -1,14 +1,14 @@
-<br><br>
+
 <header>
 <center><table>
     <tr>
         <td><a href="/"> Início </a></td>
-        <td><a href="sobre"> Ir para a página sobre </a></td>
+        <td><a href="sobre"> Sobre </a></td>
         <% if(!req.session.loggedin) { %>
-        <td><a href="cadastro"> Ir para a página cadastro </a></td>
-        <td><a href="login"> Ir para a página login </a></td>
+        <td><a href="cadastro"> Cadastro </a></td>
+        <td><a href="login"> Login </a></td>
         <% } else { %>
-        <td><a href="dashboard"> Ir para a página dashboard </a></td>
+        <td><a href="dashboard"> Dashboard </a></td>
         <td><a href="logout"> Logout </a></td>
         <% } %>
     </tr>

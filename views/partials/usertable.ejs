@@ -1,4 +1,6 @@
 <%- console.log(JSON.stringify(dados))%>
+<%- console.log(JSON.stringify(req.session))%>
+<center>
 <table>
     <thead></thead>
     <tr>
@@ -8,7 +10,11 @@
     </tr>
     <tbody>
         <% let i; for (i=0; i<dados.length; i++) {%>
+            <% if (dados [i].username==req.session.username) {%>
+                <tr style="background-color: rgb(225, 255, 2); color: white;">
+                    <%} else {%>
             <tr>
+                <% } %>
                 <th><%=dados[i].id%></th>
                 <th><%=dados[i].username%></th>
                 <th><%=dados[i].password%></th>
@@ -21,3 +27,6 @@
         </td></tr>
     </tfoot>
 </table>
+</center>
+<br>
+<br>

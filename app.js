@@ -40,7 +40,7 @@ app.get("/cadastro", (req, res) => {
 
 });
 
-// app.post()
+
 
 
 app.get("/", (req, res) => {
@@ -51,6 +51,26 @@ app.get("/", (req, res) => {
 app.get("/sobre", (req, res) => {
     res.render("pages/sobre", {titulo: "Sobre", req: req});
     console.log("GET /sobre");
+});
+
+app.get("/unauthorized", (req, res) => {
+    res.render("pages/unauthorized", {titulo: "Unauthorized", req: req});
+    console.log("GET /unauthorized");
+});
+
+app.get("/ja-cadastrado", (req, res) => {
+    res.render("pages/ja-cadastrado", {titulo: "ja-cadastrado", req: req});
+    console.log("GET /ja-cadastrado");
+});
+
+app.get("/login-invalido", (req, res) => {
+    res.render("pages/login-invalido", {titulo: "login-invalido", req: req});
+    console.log("GET /login-invalido");
+});
+
+app.get("/sucesso", (req, res) => {
+    res.render("pages/sucesso", {titulo: "sucesso", req: req});
+    console.log("GET /sucesso");
 });
 
 app.get("/dashboard", (req, res) => {
@@ -65,11 +85,11 @@ app.get("/dashboard", (req, res) => {
         res.render("pages/dashboard", {titulo: "Tabela de usuário", dados: row, req: req});
     }) 
     } else{
-        res.send("Usuário não logado")
+        res.redirect("/unauthorized");
     }
     
 
-    // res.render("pages/dashboard", {titulo: "Dashboard"});
+   
     console.log("GET /dashboard");
 
 });
@@ -104,14 +124,14 @@ app.post("/cadastro", (req, res) => {
         console.log("Query SELECT do cadastro:", JSON.stringify(row));
         if (row) {
             console.log(`Usuario: ${username} ja cadastrado.`);
-            res.send("Usuario ja cadastrado");
+            res.redirect("/ja-cadastrado");
         } else {
             const insert = "INSERT INTO users(username, password) VALUES (?,?)"
             db.get(insert, [username, password], (err, row) => {
                 if (err) throw err;
 
                 console.log(`Usuario: ${username}  cadastrado com sucesso.`)
-                res.redirect("/login");
+                res.redirect("/sucesso");
             })
         }
 
@@ -142,7 +162,7 @@ app.post("/login", (req, res) => {
         }
         else {
             //3- Se nao, executa processo de negaçao de login.
-            res.send("Usuario invalido");
+            res.redirect("/login-invalido");
         }
 
 
@@ -150,3 +170,7 @@ app.post("/login", (req, res) => {
 
 })
 
+app.use('/{*erro}', (req, res) => {
+    // Envia uma resposta de erro 404
+    res.status(404).render('pages/erro404', {titulo:"Erro 404", req: req});
+}); 
