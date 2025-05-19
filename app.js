@@ -29,13 +29,13 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true}));
 
 app.get("/login", (req, res) => {
-    res.render("pages/login", {titulo: "Login"});
+    res.render("pages/login", {titulo: "Login", req: req});
     console.log("GET /");
 
 });
 
 app.get("/cadastro", (req, res) => {
-    res.render("pages/cadastro", {titulo: "Cadastro"});
+    res.render("pages/cadastro", {titulo: "Cadastro", req: req});
     console.log("GET /cadastro");
 
 });
@@ -45,11 +45,11 @@ app.get("/cadastro", (req, res) => {
 
 app.get("/", (req, res) => {
     console.log("GET /index");
-    res.render("pages/index", {titulo: "Index"});
+    res.render("pages/index", {titulo: "Index", req: req});
 });
 
 app.get("/sobre", (req, res) => {
-    res.render("pages/sobre", {titulo: "Sobre"});
+    res.render("pages/sobre", {titulo: "Sobre", req: req});
     console.log("GET /sobre");
 });
 
@@ -62,7 +62,7 @@ app.get("/dashboard", (req, res) => {
         if(err) throw err;
         console.log(JSON.stringify(row));
 
-        res.render("pages/dashboard", {titulo: "Tabela de usuário", dados: row});
+        res.render("pages/dashboard", {titulo: "Tabela de usuário", dados: row, req: req});
     }) 
     } else{
         res.send("Usuário não logado")

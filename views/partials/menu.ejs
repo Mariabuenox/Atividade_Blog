@@ -2,12 +2,15 @@
 <header>
 <center><table>
     <tr>
-        <td><a href="/"> Voltar ao início </a></td>
+        <td><a href="/"> Início </a></td>
         <td><a href="sobre"> Ir para a página sobre </a></td>
+        <% if(!req.session.loggedin) { %>
         <td><a href="cadastro"> Ir para a página cadastro </a></td>
         <td><a href="login"> Ir para a página login </a></td>
+        <% } else { %>
         <td><a href="dashboard"> Ir para a página dashboard </a></td>
         <td><a href="logout"> Logout </a></td>
+        <% } %>
     </tr>
 </table>
 </center>
