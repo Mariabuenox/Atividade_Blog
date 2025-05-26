@@ -14,6 +14,12 @@ db.serialize(() => {
     )
 })
 
+db.serialize(() => {
+    db.run(
+        "CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, id_users INTEGER, titulo TEXT, conteudo TEXT, data_criacao TEXT)"
+    )
+})
+
 app.use(
     session({
         secret: "senhaforte",
@@ -27,6 +33,7 @@ app.use('/static', express.static(__dirname + '/static'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true}));
+
 
 app.get("/login", (req, res) => {
     res.render("pages/login", {titulo: "Login", req: req});
@@ -95,6 +102,52 @@ app.get("/dashboard", (req, res) => {
 });
 
 
+app.get("/post_create", (req, res) => {
+
+    if(req.session.loggedin) {
+
+        res.render("pages/post_create", {titulo: "post_create", req: req});
+        //Pegar dados da postagem: UserID, Título Postagem, Conteúdo da Postagem, Data da Postagem
+
+        //SELECT * FROM users WHERE username=?
+
+        // res.send("Criação de postagem... Em construção...")
+
+    } else{
+        res.redirect("/unauthorized");
+    }
+    
+    console.log("GET /post_create");
+
+});
+
+app.post("/post_create", (req, res) => {
+
+    if(req.session.loggedin) {
+
+      console.log("POST /post_create");
+      const {titulo, conteudo} = req.body;
+      console.log("Username: ", req.session.username, "id_username: ", req.session.id_username);
+
+      const data = new Date();
+      const data_criacao = data.toLocaleDateString();
+      console.log("Data de criação: ");
+
+      const query = "INSERT INTO posts (id_users, titulo, conteudo, data_criacao) VALUES (?, ?, ?, ?)";
+
+      db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
+        if(err) throw err;
+        res.send('Post criado');
+      })
+      
+    }else{
+     res.redirect("/unauthorized");
+    }
+   
+
+
+})
+
 app.get("/logout", (req, res) =>{
     console.log("GET /logout");
     req.session.destroy(() =>{
@@ -155,10 +208,12 @@ app.post("/login", (req, res) => {
         console.log(JSON.stringify(row));
 
         if (row) {
+            console.log(`SELECT da tabela users`);
             //2- Se o usuario cadastra e a senha e valida executa o login;
             req.session.username = username;
             req.session.loggedin = true;
-            res.redirect("/dashboard");
+            req.session.id_username = row.id;
+            res.redirect("/dashboard"); 
         }
         else {
             //3- Se nao, executa processo de negaçao de login.
@@ -174,3 +229,4 @@ app.use('/{*erro}', (req, res) => {
     // Envia uma resposta de erro 404
     res.status(404).render('pages/erro404', {titulo:"Erro 404", req: req});
 }); 
+
