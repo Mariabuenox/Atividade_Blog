@@ -164,6 +164,25 @@ app.get("/static", (req, res) => {
     console.log(__dirname + "\\static");
 });
 
+app.get("/posts-tabela", (req, res) => {
+console.log("GET /posts-tabela")
+    //if(req.session.loggedin) {
+       //listar todos os usuários
+    const query = "SELECT * FROM posts";
+    db.all(query, [], (err, row) => {
+        if(err) throw err;
+        console.log(JSON.stringify(row));
+        res.render("pages/posts-tabela", {titulo: "Tabela de posts", dados: row, req: req});
+    }) 
+    //} else{
+        //res.redirect("/unauthorized");
+    //}
+    
+
+
+});
+
+
 app.post("/cadastro", (req, res) => {
     console.log("/POST /cadastro");
     console.log(JSON.stringify(req.body));

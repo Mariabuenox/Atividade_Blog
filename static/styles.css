@@ -27,4 +27,9 @@ footer {
     
   }
 
-
+table{
+    text-align: center;
+    padding: 30px 0px;
+    justify-content: space-around;
+    width: 100%;
+}
