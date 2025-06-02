@@ -1,19 +1,18 @@
-
-<header>
-<center><table>
-    <tr>
-        <td><a href="/"> Início </a></td>
-        <td><a href="sobre"> Sobre </a></td>
+<menu>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/"> HOME </a></li>
+        <li><a href="sobre"> SOBRE </a></li>
         <% if(!req.session.loggedin) { %>
-        <td><a href="cadastro"> Cadastro </a></td>
-        <td><a href="login"> Login </a></td>
+        <li><a href="cadastro"> CADASTRO </a></li>
+        <li><a href="login"> LOGIN </a></li>
         <% } else { %>
-        <td><a href="dashboard"> Dashboard </a></td>
-        <td><a href="logout"> Logout </a></td>
-        <td><a href="post_create"> Criar post </a></td>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <li><a href="logout"> LOGOUT </a></li>
+        <li><a href="post_create"> CRIAR POST </a></li>
         <% } %>
-    </tr>
-</table>
-</center>
-</header>
-<br><br><br>    
+      </ul>
+    </nav>
+  </header>
+</menu>

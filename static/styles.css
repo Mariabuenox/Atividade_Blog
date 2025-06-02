@@ -1,30 +1,200 @@
-table td {
-    padding: 0 40px;
+/* ---------- Cores Base ---------- */
+:root {
+    --cor-primaria: #191970;
+    /* Midnight Blue */
+    --cor-secundaria: #3d4ea4;
+    /* Cinza médio claro */
+    --cor-fundo: #f1e9e1;
+    /* Cinza escuro */
+    --cor-texto: #ffffff;
+    --cor-link: #ffe554;
+    --cor-link-hover: #c0b7b7;
+    --cor-tabela-bg: #335eaf;
+    --cor-tabela-border: rgb(229, 255, 100);
 }
 
-a:link{
-
-    text-decoration: none;
+/* ---------- Reset básico ---------- */
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+/* ---------- Corpo da página ---------- */
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.6;
+}
+
+/* ---------- Cabeçalho ---------- */
+menu {
+    padding: 0;
+    margin: 0;
+}
+
 header {
-    background-color: #9c9c9c;
-    padding: 35px 0px;
-    color: #fff;    
+    text-align: center;
+    color: var(--cor-texto);
+} 
 
+nav {
+    background-color: var(--cor-primaria);
+    padding: 5px;
+    height: auto;
+    align-content: center;
+    align-items: center;
 }
 
-body{
-    background-color: #7d7d7d;
-    color:#fff;
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    text-decoration:underline;
+    border-radius: 10px;
+}
+
+/* ---------- Rodapé ---------- */
+/* footer {
+    background-color: var(--cor-primaria);
+    text-align: center;
+    padding: 20px;
+    color: var(--cor-texto);
+    margin-top: 40px;
+} */
 
 footer {
+    background-color: var(--cor-primaria);
+    margin-top: 40px;
+    width: 100%;
+    padding: 20px;
     bottom: 0;
-    left: 40%;
+    position: fixed;
     text-align: center;
-    padding: 30px 0px;
-    color: #ffffff;
-    
-  }
+    color: var(--cor-texto);
+}
 
+/* ---------- Links ---------- */
+/* a {
+    color: var(--cor-link);
+    text-decoration: none;
+}
 
+a:hover {
+    color: var(--cor-link-hover);
+    text-decoration: underline;
+} */
+
+/* ---------Login/cadastro---------- */
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.login h1{
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.login form {
+    width: 300px;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    padding: 35px 20px;
+    border-radius: 7px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login form input,a {
+    margin-bottom: 15px;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
+    width: 100%;
+}
+
+.login form label{
+    justify-content: start ;
+}
+
+.login button {
+    margin:20px 0;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #3d4ea4;
+}
+
+/* .box button a{
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: min-content;
+} */
+
+.login button:hover{
+    background-color: #6e93d1;
+}
+
+/* ---------- Tabelas ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table td,
+table th {
+    padding: 10px 20px;
+    border: 1px solid var(--cor-tabela-border);
+    text-align: left;
+    background-color: var(--cor-tabela-bg);
+}
+
+table th {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-fundo);
+}
+
+/* ---------- Responsividade simples ---------- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    table td,
+    table th {
+        padding: 8px 10px;
+    }
+
+    header,
+    footer {
+        padding: 20px;
+    }
+}

@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include("../partials/head") %>
-<%- include ("../partials/menu") %>
+<%- include("../partials/head"); %>
 
+<body>
 
-    <body>
+  <%- include("../partials/menu"); %>
 
+  <main>
+    <div class="container">
+      <div class="login">
+        <form action="cadastro" method="post">
+          <h1>CADASTRO</h1>
+          <label for="username">User: </label>
+          <input type="text" id="username" name="username">
+          <label for="password">Senha:</label>
+          <input type="text" id="senha" name="password">
+          <button type="submit">Cadastrar</button>
+          <!-- <a href="login"> Já tenho cadastro</a> -->
+        </form>
+      </div>
+    </div>
+  </main>
 
-        <center>
-            Bem-vindo à pagina Cadastro!<br><br>
-            <form action="cadastro" method="post">
-                User:
-                <input type="text" id="username" name="username"> <br><br>
-                Senha:
-                <input type="text" id="senha" name="password"> <br><br>
-                <br><br>
-                <button type ="submit">Cadastrar</button>   
-            </form>
-      
-          
+  <%- include ("../partials/footer") %>
 
-            </form><br>
-            <a href="login"> Já tenho cadastro</a>
-         
-          
-        </center>
-
-    <%- include ("../partials/footer") %>
-
-    </body>
+</body>
 
 </html>
