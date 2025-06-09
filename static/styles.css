@@ -1,35 +1,261 @@
-table td {
-    padding: 0 40px;
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --fundo-principal: #000000;  /* fundo principal do site */
+  --fundo-claro: #f41616;  /* fundo dos textos clicados */
+  --texto-claro: #ffffff;  /* todos os textos do site */
+  --texto-escuro: #333333;  /* texto dos digitos dentro dos blocos */ 
+  --primaria: #4c6ef5;  /* cor botões */ 
+  --secundaria: #8892b0;
+  --cor-destaque: #00b4d8;
+  --org-fundo: #ffffff;
+  --mouse: #e5ff3f;
+  --nova: #d3ff32;
 }
 
-a:link{
-
-    text-decoration: none;
-}
-header {
-    background-color: #9c9c9c;
-    padding: 35px 0px;
-    color: #fff;    
-
+* {  /*  O asterisco * é o seletor universal, ou seja, aplica o estilo a todos os elementos da página   */
+  margin: 0;  /*  Remove qualquer margem externa padrão  */
+  padding: 0;  /*  Remove o preenchimento interno padrão dos elementos  */
+  box-sizing: border-box;  /*  largura total do elemento inclua o padding e a borda, ou seja: largura final do elemento = width  (em CSS define a largura de um elemento)  */ 
 }
 
-body{
-    background-color: #7d7d7d;
-    color:#fff;
+body {  /*  Isso aplica os estilos a toda a página, pois o <body> envolve todo o conteúdo visível do site  */
+  font-family: 'Poppins', sans-serif;  /*  Define a fonte principal usada no site */
+  background-color: var(--fundo-principal);  /*  Define a cor de fundo da página  */ 
+  color: var(--texto-claro);  /*  Define a cor do texto padrão da página  */
+  line-height: 1.6;  /*  Define o espaçamento entre linhas  */
 }
 
-footer {
-    bottom: 0;
-    left: 40%;
-    text-align: center;
-    padding: 30px 0px;
-    color: #ffffff;
-    
-  }
+header {  /*  Esse bloco define o layout e o visual do cabeçalho (header) da sua página 
+--> geralmente onde fica o logotipo e a navegação (menu).*/
 
-table{
-    text-align: center;
-    padding: 30px 0px;
-    justify-content: space-around;
+  background-color: var(--fundo-principal);  /*  Define a cor de fundo do cabeçalho.  */
+  padding: 20px 40px;  /*  Adiciona espaçamento interno (por dentro do cabeçalho).  */
+  display: flex;  /*  Ativa o Flexbox, um sistema moderno de layout --> organiza os elementos filhos (como logo e menu) em linha  */
+  justify-content: space-between;  /*  Dentro do Flexbox, alinha os elementos com espaço entre eles space-between = (espaço entre)  */
+  align-items: center;  /*  Alinha os elementos verticalmente ao centro  */ 
+  color: var(--texto-claro);  /*  Define a cor do texto dentro do <header> (cabeçalho)  */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  /*  Adiciona uma sombra abaixo do cabeçalho. */
+}
+nav {
+    background-color: var(--cor-primaria);
+    padding: 5px;
+    height: auto;
+    align-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--texto-claro); /*  Define a cor do texto dos links  */
+    text-decoration: none;  /*  Remove o sublinhado padrão dos links  */ 
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    text-decoration:underline;
+    border-radius: 10px;
+    font-weight: 600;  /*  Deixa o texto do link com uma espessura mais grossa (semi-bold)  */
+    color: var(--cor-destaque);  /*  Altera a cor do texto do link enquanto o mouse estiver sobre ele  */
+    transition: color 0.3s ease;  /*  diciona uma transição quando a cor do link muda (ao passar o mouse)  */
+}
+
+main {  /*  área principal de conteúdo da página.  */
+
+  padding: 40px 20px;  /*  Adiciona espaçamento interno (espaço entre o conteúdo e as bordas da <main>)  */ 
+  display: flex;  /*  Transforma o <main> em um container flexível, ativando o Flexbox, que organiza elementos filhos (como seções, cards, etc).  */
+  flex-direction: column;  /*  Define que os filhos de <main> serão empilhados verticalmente (um abaixo do outro), como colunas  */
+  gap: 30px;  /*  Adiciona 30px de espaço entre os filhos diretos do <main>, como <section>, <div class="card">, etc.  */
+/*   Em HTML, os filhos da main são os elementos que estão diretamente dentro da tag <main>  */
+}
+
+section {
+
+  background-color: var(--org-fundo);
+  color: var(--texto-escuro);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00000033;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.login h1{
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.login form {
+    width: 300px;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+    padding: 35px 20px;
+    border-radius: 7px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login form input,a {
+    margin-bottom: 15px;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    align-self: center;
     width: 100%;
 }
+
+.login form label{
+    justify-content: start ;
+}
+
+.login button {
+    margin:20px 0;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #3d4ea4;
+}
+
+/* .box button a{
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: min-content;
+} */
+
+.login button:hover{
+    background-color: #6e93d1;
+}
+
+h1, h2, h3 {
+
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+button, .btn {
+
+  background-color: var(--primaria);
+  color: var(--texto-claro);
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+button:hover, .btn:hover {
+
+  background-color: var(--mouse);
+}
+
+
+/* ---------- Rodapé ---------- */
+
+footer {
+  background-color: var(--fundo-principal);
+  color: var(--text-light);
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 50px;
+}
+
+/* Estilização da tabela  */
+table {
+
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--org-fundo);
+  color: var(--texto-escuro);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table th, table td {
+
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+
+  background-color: var(--primaria);
+  color: white;
+}
+
+table tr:hover {
+
+  background-color: #f1f1f1;
+}
+
+/* organização e responsivos */
+.card-grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+
+  background-color: var(--org-fundo);
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--texto-escuro);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  header {
+
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+
+    margin-top: 10px;
+  }
+
+  table th, table td {
+
+    padding: 12px;
+  }
+
+  main {
+    
+    padding: 20px 10px;
+  }
+}
+
+/* 
+Parte  -->	Significado 
+--cor-principal  -->  Nome da variável (precisa começar com -- Porque isso faz parte da especificação oficial do CSS. É assim que o navegador reconhece que você está declarando uma variável personalizada.)
+:root { ... }  -->	Onde você define variáveis globais
+var(--cor-principal)  -->	Como você usa a variável
