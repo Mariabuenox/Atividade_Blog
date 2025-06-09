@@ -102,6 +102,29 @@ app.get("/dashboard", (req, res) => {
 });
 
 
+
+app.get("/deleteC/:id", (req, res) => {
+    if (req.session.loggedin) {
+        const idUsuario = req.params.id;
+
+        const query = "DELETE FROM users WHERE id = ?";
+        db.get(query, [idUsuario], (err, row) => {
+            if (err) {
+                console.error("Erro ao deletar usuário:", err.message);
+                res.send("Erro ao deletar usuário.");
+            } else {
+                console.log(`Usuário com ID ${idUsuario} deletado.`);
+                res.redirect("/dashboard")
+            }
+
+        });
+    } else {
+        res.redirect("/unauthorized");
+    }
+    
+});
+
+
 app.get("/post_create", (req, res) => {
 
     if(req.session.loggedin) {
