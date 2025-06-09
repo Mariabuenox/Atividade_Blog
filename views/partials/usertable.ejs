@@ -9,16 +9,20 @@
             <th>Senha</th>
         </tr>
         <tbody>
-            <% let i; for (i=0; i<dados.length; i++) {%>
+             <% let i; for (i=0; i<dados.length; i++) {%> <!--Início de um laço for em JavaScript (dentro de EJS), que percorre a lista dados. -->
+                <!-- dados.length representa o número de objetos (ex: usuários). -->
+                <!-- A variável i será usada para acessar cada item da lista. -->
                 <% if (dados [i].username==req.session.username) {%> 
-                    <tr style="background-color: rgb(225, 255, 2); color: white;">
+                    <tr style="background-color: rgb(225, 255, 2); color: white;"> <!-- Se for o usuário logado, a linha é renderizada com fundo amarelo e texto branco, para destacá-lo visualmente na tabela. -->
                         <%} else {%>
                 <tr>
                     <% } %>
                     <th><%=dados[i].id%></th>
                     <th><%=dados[i].username%></th>
-                    <th><%=dados[i].password%></th>
-                </tr>      
+                   <th><%=dados[i].password%></th>  <!-- 
+                    Renderiza as três células da linha com os dados do usuário: -->
+
+                </tr> <!--  Cria uma linha de cabeçalho da tabela com três colunas: ID, Username e Senha. Esses são os rótulos fixos que descrevem os dados abaixo. -->
             <% } %>
         </tbody>
         <tfoot>
