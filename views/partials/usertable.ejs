@@ -7,17 +7,20 @@
         <th>ID</th>
         <th> Username</th>
         <th>Senha</th>
+        <th>Delete</th>
     </tr>
     <tbody>
         <% let i; for (i=0; i<dados.length; i++) {%>
             <% if (dados [i].username==req.session.username) {%>
-                <tr style="background-color: rgb(225, 255, 2); color: white;">
+                <tr style="background-color: rgb(25, 3, 135); color: white;">
                     <%} else {%>
             <tr>
                 <% } %>
                 <th><%=dados[i].id%></th>
                 <th><%=dados[i].username%></th>
-                <th><%=dados[i].password%></th>
+                <th><%=dados[i].password%></th> 
+                <th><a href="/deleteC/<%= dados[i].id%>" onclick= "return confirm(' Tem certeza que deseja deletar este usuário? Esta ação não pode ser desfeita!')">Deletar</a></th>
+                    
             </tr>      
         <% } %>
     </tbody>
