@@ -47,9 +47,6 @@ app.get("/cadastro", (req, res) => {
 
 });
 
-
-
-
 app.get("/", (req, res) => {
     console.log("GET /index");
     res.render("pages/index", {titulo: "Index", req: req});
@@ -95,8 +92,6 @@ app.get("/dashboard", (req, res) => {
         res.redirect("/unauthorized");
     }
     
-
-   
     console.log("GET /dashboard");
 
 });
@@ -143,9 +138,6 @@ app.post("/post_create", (req, res) => {
     }else{
      res.redirect("/unauthorized");
     }
-   
-
-
 })
 
 app.get("/logout", (req, res) =>{
