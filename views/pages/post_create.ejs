@@ -6,22 +6,18 @@
 
 
 <body>
-    <center>
-        Criar post
-        <br><br>
-        <form action="/post_create" method="post">
-            Título:   
-            <input type="text" id="titulo" name="titulo"> <br><br>
-            Conteúdo:   
-            <textarea id="conteudo" name="conteudo" rows="10" cols="70" required></textarea><br>
-            <br><br>
-            <button type ="submit">Criar post</button>   
-          </form>
-        
-            </form>  <br>
-
-        <%- include ("../partials/footer") %>
-    </center>
+  <div class="content">
+    <div class="criar-post">
+      <form action="/post_create" method="post">
+        <label for="title">Titúlo</label>
+        <input type="text" id="titulo" name="titulo">
+        <label for="info">Publicação</label>
+        <textarea id="conteudo" name="conteudo" rows="10" cols="50" required></textarea><br>
+        <button type="submit">New Post</button>
+      </form>
+    </div>
+  </div>
+  <%- include ("../partials/footer") %>
 
 </body>
 

@@ -1,6 +1,7 @@
 <!-- <%- console.log(JSON.stringify(dados))%> Imprime os dados no console do servidor como uma string JSON. --> 
 <!-- <%- console.log(JSON.stringify(req.session))%> Imprime a sessão do usuário no console do servidor como JSON. --> 
 <center>
+<<<<<<< HEAD
     <table>
         <thead></thead>
         <tr>
@@ -34,3 +35,37 @@
     </center>
     <br>
     <br>
+=======
+<table>
+    <thead></thead>
+    <tr>
+        <th>ID</th>
+        <th> Username</th>
+        <th>Senha</th>
+        <th>Delete</th>
+    </tr>
+    <tbody>
+        <% let i; for (i=0; i<dados.length; i++) {%>
+            <% if (dados [i].username==req.session.username) {%>
+                <tr style="background-color: rgb(25, 3, 135); color: white;">
+                    <%} else {%>
+            <tr>
+                <% } %>
+                <th><%=dados[i].id%></th>
+                <th><%=dados[i].username%></th>
+                <th><%=dados[i].password%></th> 
+                <th><a href="/deleteC/<%= dados[i].id%>" onclick= "return confirm(' Tem certeza que deseja deletar este usuário? Esta ação não pode ser desfeita!')">Deletar</a></th>
+                    
+            </tr>      
+        <% } %>
+    </tbody>
+    <tfoot>
+        <tr><td colspan="3">
+            <%- `Quantidade de registros ${i}` %>
+        </td></tr>
+    </tfoot>
+</table>
+</center>
+<br>
+<br>
+>>>>>>> origin/maIN

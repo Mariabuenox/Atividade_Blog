@@ -48,9 +48,6 @@ app.get("/cadastro", (req, res) => {
 
 });
 
-
-
-
 app.get("/", (req, res) => {
     console.log("GET /index");
     res.render("pages/index", {titulo: "Index", req: req});
@@ -96,8 +93,6 @@ app.get("/dashboard", (req, res) => {
         res.redirect("/unauthorized");
     }
     
-
-   
     console.log("GET /dashboard");
 
 });
@@ -144,10 +139,28 @@ app.post("/post_create", (req, res) => {
     }else{
      res.redirect("/unauthorized");
     }
-   
-
-
 })
+
+app.get("/deleteC/:id", (req, res) => {
+    if (req.session.loggedin) {
+        const idUsuario = req.params.id;
+
+        const query = "DELETE FROM users WHERE id = ?";
+        db.get(query, [idUsuario], (err, row) => {
+            if (err) {
+                console.error("Erro ao deletar usuário:", err.message);
+                res.send("Erro ao deletar usuário.");
+            } else {
+                console.log(`Usuário com ID ${idUsuario} deletado.`);
+                res.redirect("/dashboard")
+            }
+
+        });
+    } else {
+        res.redirect("/unauthorized");
+    }
+    
+});
 
 app.get("/logout", (req, res) =>{
     console.log("GET /logout");
