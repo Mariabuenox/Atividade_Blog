@@ -193,9 +193,47 @@ a {
 }
 
 /* --------------POSTS------------- */
-.criar-post{
+.content{
   display: flex;
-  
+  justify-content: center;
+  margin: 20px;
+}
+
+.criar-post form{
+  padding: 20px;
+  background-color: #292929;
+  display: flex;
+  width: auto;
+  height: 400px;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.criar-post form textarea{
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+}
+
+.criar-post form input{
+  height: 2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.criar-post form label{
+  margin-top: 15px;
+}
+
+.criar-post form button{
+  background-color: #F9C70B;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.criar-post button:hover {
+  background-color: #fbdd70;
 }
 
 /* ---------- Rodapé ---------- */

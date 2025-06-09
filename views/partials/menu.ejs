@@ -3,18 +3,17 @@
     <nav>
       <ul>
         <li><a href="/"> HOME </a></li>
-        <li><a href="sobre"> SOBRE </a></li>
+        <li><a href="sobre"> ABOUT </a></li>
         <% if(!req.session.loggedin) { %>
-        <li><a href="cadastro"> CADASTRO </a></li>
+        <li><a href="cadastro"> REGISTER </a></li>
         <li><a href="login"> LOGIN </a></li>
         <% } else { %>
         <li><a href="dashboard"> DASHBOARD </a></li>
-        <li><a href="logout"> LOGOUT </a></li>
-        <li><a href="post_create"> CRIAR POST </a></li>
+        <li><a href="post_create"> NEW POST </a></li>
         <input type="search" id="pesquisa" placeholder="Search" >
+        <li><a href="logout"> LOGOUT </a></li>
         <% } %>
       </ul>
-    </nav>
-    
+    </nav>  
   </header>
 </menu>
