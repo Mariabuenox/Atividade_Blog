@@ -185,6 +185,7 @@ section {
   font-family: 'Times New Roman', Times, serif;
   margin-bottom: 20px;
   align-self: center;
+  color: #000000;
 }
 
 .login form {
@@ -199,22 +200,26 @@ section {
   background-color: #bababa;
 }
 
-.login form input,
-a {
+.login form input{
   margin-bottom: 15px;
   height: 2rem;
   border: none;
   border-radius: 5px;
   /* align-items: center; */
   width: 100%;
-  text-decoration: none;
-  color: #000000;
   align-self: center;
   font-size: 1rem;
 }
 
+.login a{
+ margin: 0 auto; 
+ text-decoration: none;
+ color: #000000;
+}
+
 .login form label {
   justify-content: start;
+  color: #4b4b4b;
 }
 
 .login button {
@@ -332,9 +337,9 @@ h3 {
 }
 
 img {
-
   margin-left: auto;
   margin-right: auto;
+  align-items: center;
 }
 
 button,

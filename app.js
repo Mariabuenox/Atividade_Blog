@@ -79,7 +79,7 @@ app.get("/sucesso", (req, res) => {
 });
 
 app.get("/sucessoP", (req, res) => {
-    res.render("pages/sucessoP", {titulo: "sucessoP", req: req});
+    res.render("pages/sucessoP", { titulo: "sucessoP", req: req });
     console.log("GET /sucessoP");
 });
 
@@ -136,13 +136,13 @@ app.post("/post_create", (req, res) => {
 
         const query = "INSERT INTO posts (id_users, titulo, conteudo, data_criacao) VALUES (?, ?, ?, ?)";
 
-      db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
-        if(err) throw err;
-        res.redirect("/sucessoP")
-      })
-      
-    }else{
-     res.redirect("/unauthorized");
+        db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
+            if (err) throw err;
+            res.redirect("/sucessoP")
+        })
+
+    } else {
+        res.redirect("/unauthorized");
     }
 })
 
@@ -181,14 +181,14 @@ app.get("/deleteP/:id", (req, res) => {
                 res.redirect("/posts-tabela")
             }
 
-        }); 
+        });
     } else {
         res.redirect("/unauthorized");
     }
-    
+
 });
 
-app.get("/logout", (req, res) =>{
+app.get("/logout", (req, res) => {
     console.log("GET /logout");
     req.session.destroy(() => {
         res.redirect("/")
@@ -270,10 +270,10 @@ app.post("/login", (req, res) => {
             req.session.loggedin = true;
             req.session.id_username = row.id;
             // res.redirect("/dashboard");
-            if (username == "admin"){
+            if (username == "admin") {
                 req.session.adm = true;
             };
-            res.redirect("/"); 
+            res.redirect("/");
         }
         else {
             //3- Se nao, executa processo de negaçao de login.
@@ -290,27 +290,30 @@ app.use('/{*erro}', (req, res) => {
     res.status(404).render('pages/erro404', { titulo: "Erro 404", req: req });
 });
 
-// const data = [
-// {
-//     title: 
-// }
-// ]
+const search = req.query.search || "";
 
+let query = "SELECT * FROM posts";
+let params = [];
 
+if (search) {
+    query = "SELECT * FROM posts WHERE titulo LIKE ? OR conteudo LIKE ?";
+    params = [`%${search}%`, `%${search}%`];
+}
 
-// const cardContainer = document.querySelector(".card-container");
-// const searchInput = document.querySelector("#searchInput");
+db.all(query, params, (err, rows) => {
+    if (err) {
+        console.error("Posts não encontradis:", err.message);
+        return res.send("Posts não encontrados");
+    }
 
-const displayData = data => {
-    cardContainer.innerHTML = "";
-    data.foreach(e => {
-        cardContainer.innerHTML += `
-        <div class="card">
-        <h3>${e.title}</h3>
-        <p>${e.desciption}</p>
-        </div>`
-    })
-};
+    console.log(JSON.stringify(rows));
+    res.render("pages/index", {
+        titulo: "Tabela dos Posts",
+        dados: rows,
+        search: search,
+        req: req
+    });
+});
 
 // searchInput.addEventListener("keyup", (e) => {
 //     const search = data.filter(i => i.title.toLocaleLowerCase().icludes(e.target.value.toLocaleLowerCase()))
