@@ -246,7 +246,10 @@ app.post("/login", (req, res) => {
             req.session.username = username;
             req.session.loggedin = true;
             req.session.id_username = row.id;
-            res.redirect("/dashboard"); 
+            if (username == "admin"){
+                req.session.adm = true;
+            };
+            res.redirect("/"); 
         }
         else {
             //3- Se nao, executa processo de negaçao de login.

@@ -8,14 +8,12 @@
         <li><a href="cadastro"> REGISTER </a></li>
         <li><a href="login"> LOGIN </a></li>
         <% } else { %>
-        <li><a href="dashboard"> DASHBOARD </a></li>
-<<<<<<< HEAD
-        <li><a href="post_create"> CRIAR POST </a></li>
-        <li><a href="posts-tabela"> POSTS </a></li>
-=======
+          <% if(req.session.adm) {%> 
+          <li><a href="dashboard"> DASHBOARD </a></li>
+          <% } %> 
+    
         <li><a href="post_create"> NEW POST </a></li>
         <input type="search" id="pesquisa" placeholder="Search" >
->>>>>>> origin/maIN
         <li><a href="logout"> LOGOUT </a></li>
         <% } %>
       </ul>
