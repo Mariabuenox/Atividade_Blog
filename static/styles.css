@@ -267,8 +267,8 @@ table td {
 
 table th {
 
-  background-color: var(--primaria);
-  color: white;
+  color: #000000;
+
 }
 
 table tr:hover {
