@@ -78,6 +78,11 @@ app.get("/sucesso", (req, res) => {
     console.log("GET /sucesso");
 });
 
+app.get("/sucessoP", (req, res) => {
+    res.render("pages/sucessoP", {titulo: "sucessoP", req: req});
+    console.log("GET /sucessoP");
+});
+
 app.get("/dashboard", (req, res) => {
 
     if (req.session.loggedin) {
@@ -133,8 +138,7 @@ app.post("/post_create", (req, res) => {
 
       db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
         if(err) throw err;
-        res.redirect("/posts-tabela");
-        // res.send('Post criado');
+        res.redirect("/sucessoP")
       })
       
     }else{
@@ -163,7 +167,28 @@ app.get("/deleteC/:id", (req, res) => {
 
 });
 
-app.get("/logout", (req, res) => {
+app.get("/deleteP/:id", (req, res) => {
+    if (req.session.loggedin) {
+        const id = req.params.id;
+
+        const query = "DELETE FROM posts WHERE id = ?";
+        db.get(query, [id], (err, row) => {
+            if (err) {
+                console.error("Erro ao deletar usuário:", err.message);
+                res.send("Erro ao deletar usuário.");
+            } else {
+                console.log(`POST com ID ${id} deletado.`);
+                res.redirect("/posts-tabela")
+            }
+
+        }); 
+    } else {
+        res.redirect("/unauthorized");
+    }
+    
+});
+
+app.get("/logout", (req, res) =>{
     console.log("GET /logout");
     req.session.destroy(() => {
         res.redirect("/")

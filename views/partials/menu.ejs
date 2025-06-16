@@ -8,10 +8,10 @@
         <li><a href="cadastro"> REGISTER </a></li>
         <li><a href="login"> LOGIN </a></li>
         <% } else { %>
-          <% if(req.session.adm) {%> 
-          <li><a href="dashboard"> DASHBOARD </a></li>
-          <% } %> 
-    
+        <% if(req.session.adm) {%>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <% } %>
+        <li><a href="posts-tabela"> POSTS </a></li>
         <li><a href="post_create"> NEW POST </a></li>
         <div class="search">
           <label for="">
@@ -25,12 +25,12 @@
             <p>descrição</p>
           </div>
          </div> -->
-        
+
         <!-- <input type="search" id="pesquisa" placeholder="Search" > -->
         <li><a href="logout"><span class="material-symbols-outlined">logout</span> </a></li>
         <% } %>
       </ul>
-      
-    </nav>  
+
+    </nav>
   </header>
 </menu>

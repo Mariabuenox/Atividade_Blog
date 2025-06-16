@@ -22,6 +22,7 @@
                 <td><%= dados[i].titulo %></td>
                 <td><%= dados[i].conteudo %></td>
                 <td><%= dados[i].data_criacao %></td>
+                <td><a href="/deleteP/<%= dados[i].id%>" onclick= "return confirm(' Tem certeza que deseja deletar este post? Esta ação não pode ser desfeita!')">Deletar</a></td   >
                 
             </tr>      
         <% } %>
