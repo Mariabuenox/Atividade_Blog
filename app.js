@@ -8,6 +8,7 @@ const PORT = 3000; // Configura o TCP
 
 const db = new sqlite3.Database("user.db")
 
+
 db.serialize(() => {
     db.run(
         "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)"
@@ -130,13 +131,14 @@ app.post("/post_create", (req, res) => {
 
         const query = "INSERT INTO posts (id_users, titulo, conteudo, data_criacao) VALUES (?, ?, ?, ?)";
 
-        db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
-            if (err) throw err;
-            res.send('Post criado');
-        })
-
-    } else {
-        res.redirect("/unauthorized");
+      db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
+        if(err) throw err;
+        res.redirect("/posts-tabela");
+        // res.send('Post criado');
+      })
+      
+    }else{
+     res.redirect("/unauthorized");
     }
 })
 
@@ -190,9 +192,6 @@ app.get("/posts-tabela", (req, res) => {
     //} else{
     //res.redirect("/unauthorized");
     //}
-
-
-
 });
 
 
@@ -245,7 +244,11 @@ app.post("/login", (req, res) => {
             req.session.username = username;
             req.session.loggedin = true;
             req.session.id_username = row.id;
-            res.redirect("/dashboard");
+            // res.redirect("/dashboard");
+            if (username == "admin"){
+                req.session.adm = true;
+            };
+            res.redirect("/"); 
         }
         else {
             //3- Se nao, executa processo de negaçao de login.

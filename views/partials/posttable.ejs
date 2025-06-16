@@ -1,22 +1,22 @@
-<%- console.log(JSON.stringify(dados))%>
-<%- console.log(JSON.stringify(req.session))%>
+<!-- <%- console.log(JSON.stringify(dados))%> Imprime os dados no console do servidor como uma string JSON. -->
+<!-- <%- console.log(JSON.stringify(req.session))%>  Imprime a sessão do usuário no console do servidor como JSON. -->
 <center>
-<table border="1px">
+ <table border="1px"> <!--Cria uma tabela HTML com bordas de 1 pixel. -->
     <thead>
     <tr>
-        <th>id</th>
-        <th>id_users</th>
-        <th>titulo</th>
-        <th>conteudo</th>
-        <th>data_criacao</th>
-        <th>ações</th>
+        <td>id</td>
+        <td>id_users</td>
+        <td>titulo</td>
+        <td>conteudo</td>
+        <td>data_criacao</td>
+        <td>ações</td>
     </tr>
-</thead>
+ </thead> <!--Cabeçalho da tabela (<thead>) com uma linha (<tr>) contendo 5 colunas (<th>), que são os títulos das colunas da tabela. -->
     <tbody>
-        <% let i; for (i=0; i<dados.length; i++) {%>
-            <% if (dados [i].username==req.session.username) {%>    
+         <% let i; for (i=0; i<dados.length; i++) {%> <!-- Um loop for que percorre todos os elementos do array dados. A variável i serve como índice do loop. -->
+            <!-- <% if (dados [i].username==req.session.username) {%>  Condição para exibir somente os registros caso username seja igual ao da sessão atual (usuário logado). Isso é uma tentativa de filtrar os dados para cada usuário   -->
             <tr>
-                <% } %>
+                <!-- <% } %> Fecha a instrução do if -->
                 <td><%= dados[i].id %></td>
                 <td><%= dados[i].id_users %></td>
                 <td><%= dados[i].titulo %></td>
@@ -28,10 +28,11 @@
     </tbody>
     <tfoot>
         <tr><th colspan="3">
-            <%- `Quantidade de registros ${i}` %>
+            <%= dados.length %>
         </th></tr>
     </tfoot>
 </table>
 </center>
 <br>
-<br>
+<br><!-- Fecha a tabela e o centramento. As duas tags <br> criam espaços (quebras de linha) abaixo da tabela. -->
+

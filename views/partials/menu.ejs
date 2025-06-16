@@ -8,7 +8,10 @@
         <li><a href="cadastro"> REGISTER </a></li>
         <li><a href="login"> LOGIN </a></li>
         <% } else { %>
-        <li><a href="dashboard"> DASHBOARD </a></li>
+          <% if(req.session.adm) {%> 
+          <li><a href="dashboard"> DASHBOARD </a></li>
+          <% } %> 
+    
         <li><a href="post_create"> NEW POST </a></li>
         <div class="search">
           <label for="">
