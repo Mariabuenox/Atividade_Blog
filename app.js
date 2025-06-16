@@ -32,66 +32,66 @@ app.use('/static', express.static(__dirname + '/static'));
 
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/login", (req, res) => {
-    res.render("pages/login", {titulo: "Login", req: req});
+    res.render("pages/login", { titulo: "Login", req: req });
     console.log("GET /");
 
 });
 
 app.get("/cadastro", (req, res) => {
-    res.render("pages/cadastro", {titulo: "Cadastro", req: req});
+    res.render("pages/cadastro", { titulo: "Cadastro", req: req });
     console.log("GET /cadastro");
 
 });
 
 app.get("/", (req, res) => {
     console.log("GET /index");
-    res.render("pages/index", {titulo: "Index", req: req});
+    res.render("pages/index", { titulo: "Index", req: req });
 });
 
 app.get("/sobre", (req, res) => {
-    res.render("pages/sobre", {titulo: "Sobre", req: req});
+    res.render("pages/sobre", { titulo: "Sobre", req: req });
     console.log("GET /sobre");
 });
 
 app.get("/unauthorized", (req, res) => {
-    res.render("pages/unauthorized", {titulo: "Unauthorized", req: req});
+    res.render("pages/unauthorized", { titulo: "Unauthorized", req: req });
     console.log("GET /unauthorized");
 });
 
 app.get("/ja-cadastrado", (req, res) => {
-    res.render("pages/ja-cadastrado", {titulo: "ja-cadastrado", req: req});
+    res.render("pages/ja-cadastrado", { titulo: "ja-cadastrado", req: req });
     console.log("GET /ja-cadastrado");
 });
 
 app.get("/login-invalido", (req, res) => {
-    res.render("pages/login-invalido", {titulo: "login-invalido", req: req});
+    res.render("pages/login-invalido", { titulo: "login-invalido", req: req });
     console.log("GET /login-invalido");
 });
 
 app.get("/sucesso", (req, res) => {
-    res.render("pages/sucesso", {titulo: "sucesso", req: req});
+    res.render("pages/sucesso", { titulo: "sucesso", req: req });
     console.log("GET /sucesso");
 });
 
 app.get("/dashboard", (req, res) => {
 
-    if(req.session.loggedin) {
-       //listar todos os usuários
-    const query = "SELECT * FROM users";
-    db.all(query, [], (err, row) => {
-        if(err) throw err;
-        console.log(JSON.stringify(row));
+    if (req.session.loggedin) {
+        //listar todos os usuários
+        const query = "SELECT * FROM users";
+        db.all(query, [], (err, row) => {
+            if (err) throw err;
+            console.log(JSON.stringify(row));
 
-        res.render("pages/dashboard", {titulo: "Tabela de usuário", dados: row, req: req});
-    }) 
-    } else{
+            res.render("pages/dashboard", { titulo: "Tabela de usuário", dados: row, req: req });
+        })
+    } else {
         res.redirect("/unauthorized");
     }
-    
+
     console.log("GET /dashboard");
 
 });
@@ -99,44 +99,44 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/post_create", (req, res) => {
 
-    if(req.session.loggedin) {
+    if (req.session.loggedin) {
 
-        res.render("pages/post_create", {titulo: "post_create", req: req});
+        res.render("pages/post_create", { titulo: "post_create", req: req });
         //Pegar dados da postagem: UserID, Título Postagem, Conteúdo da Postagem, Data da Postagem
 
         //SELECT * FROM users WHERE username=?
 
         // res.send("Criação de postagem... Em construção...")
 
-    } else{
+    } else {
         res.redirect("/unauthorized");
     }
-    
+
     console.log("GET /post_create");
 
 });
 
 app.post("/post_create", (req, res) => {
 
-    if(req.session.loggedin) {
+    if (req.session.loggedin) {
 
-      console.log("POST /post_create");
-      const {titulo, conteudo} = req.body;
-      console.log("Username: ", req.session.username, "id_username: ", req.session.id_username);
+        console.log("POST /post_create");
+        const { titulo, conteudo } = req.body;
+        console.log("Username: ", req.session.username, "id_username: ", req.session.id_username);
 
-      const data = new Date();
-      const data_criacao = data.toLocaleDateString();
-      console.log("Data de criação: ");
+        const data = new Date();
+        const data_criacao = data.toLocaleDateString();
+        console.log("Data de criação: ");
 
-      const query = "INSERT INTO posts (id_users, titulo, conteudo, data_criacao) VALUES (?, ?, ?, ?)";
+        const query = "INSERT INTO posts (id_users, titulo, conteudo, data_criacao) VALUES (?, ?, ?, ?)";
 
-      db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
-        if(err) throw err;
-        res.send('Post criado');
-      })
-      
-    }else{
-     res.redirect("/unauthorized");
+        db.get(query, [req.session.id_username, titulo, conteudo, data_criacao], (err) => {
+            if (err) throw err;
+            res.send('Post criado');
+        })
+
+    } else {
+        res.redirect("/unauthorized");
     }
 })
 
@@ -158,12 +158,12 @@ app.get("/deleteC/:id", (req, res) => {
     } else {
         res.redirect("/unauthorized");
     }
-    
+
 });
 
-app.get("/logout", (req, res) =>{
+app.get("/logout", (req, res) => {
     console.log("GET /logout");
-    req.session.destroy(() =>{
+    req.session.destroy(() => {
         res.redirect("/")
     })
 })
@@ -178,19 +178,19 @@ app.get("/static", (req, res) => {
 });
 
 app.get("/posts-tabela", (req, res) => {
-console.log("GET /posts-tabela")
+    console.log("GET /posts-tabela")
     //if(req.session.loggedin) {
-       //listar todos os usuários
+    //listar todos os usuários
     const query = "SELECT * FROM posts";
     db.all(query, [], (err, row) => {
-        if(err) throw err;
+        if (err) throw err;
         console.log(JSON.stringify(row));
-        res.render("pages/posts-tabela", {titulo: "Tabela de posts", dados: row, req: req});
-    }) 
+        res.render("pages/posts-tabela", { titulo: "Tabela de posts", dados: row, req: req });
+    })
     //} else{
-        //res.redirect("/unauthorized");
+    //res.redirect("/unauthorized");
     //}
-    
+
 
 
 });
@@ -245,7 +245,7 @@ app.post("/login", (req, res) => {
             req.session.username = username;
             req.session.loggedin = true;
             req.session.id_username = row.id;
-            res.redirect("/dashboard"); 
+            res.redirect("/dashboard");
         }
         else {
             //3- Se nao, executa processo de negaçao de login.
@@ -259,6 +259,30 @@ app.post("/login", (req, res) => {
 
 app.use('/{*erro}', (req, res) => {
     // Envia uma resposta de erro 404
-    res.status(404).render('pages/erro404', {titulo:"Erro 404", req: req});
-}); 
+    res.status(404).render('pages/erro404', { titulo: "Erro 404", req: req });
+});
+
+const search = req.query.search || "";
+let query = "SELECT * FROM posts";
+let params = [];
+
+if (search) {
+    query = "SELECT * FROM posts WHERE titulo LIKE ? OR conteudo LIKE ?";
+    params = [`%${search}%`, `%${search}%`];
+}
+
+db.all(query, params, (err, rows) => {
+    if (err) {
+        console.error("Error ao buscar posts:", err.message);
+        return res.send("Posts não encontrados");
+    }
+});
+
+console.log(JSON.stringify(rows));
+res.render("pages/index", {
+    titulo: "Tabela dos Posts",
+    dados: rows,
+    search: search,
+    req: req
+});
 
