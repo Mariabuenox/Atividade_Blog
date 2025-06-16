@@ -10,10 +10,24 @@
         <% } else { %>
         <li><a href="dashboard"> DASHBOARD </a></li>
         <li><a href="post_create"> NEW POST </a></li>
-        <input type="search" id="pesquisa" placeholder="Search" >
-        <li><a href="logout"> LOGOUT </a></li>
+        <div class="search">
+          <label for="">
+            <span class="material-symbols-outlined">search</span>
+          </label>
+          <input type="text" id="searchInput" placeholder="Pesquisar">
+        </div>
+        <!-- <div class="card-container">
+          <div class="card">
+            <h3>titulo</h3>
+            <p>descrição</p>
+          </div>
+         </div> -->
+        
+        <!-- <input type="search" id="pesquisa" placeholder="Search" > -->
+        <li><a href="logout"><span class="material-symbols-outlined">logout</span> </a></li>
         <% } %>
       </ul>
+      
     </nav>  
   </header>
 </menu>
